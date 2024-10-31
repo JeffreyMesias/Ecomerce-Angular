@@ -1,0 +1,27 @@
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* Tres columnas */
+  gap: 5px; /* Espacio entre imágenes */
+
+}
+
+.image-grid img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px; /* Bordes redondeados */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra */
+  transition: transform 0.3s ease; /* Transición suave */
+}
+
+.image-grid img:hover {
+  transform: scale(1.05); /* Efecto de zoom al pasar el mouse */
+}
+
+#article {
+  width: 100%; /* Ajustar al ancho del contenedor */
+  max-width: 300px; /* Ancho máximo */
+  height: auto; /* Ajustar altura automáticamente */
+  border: 1px solid #ddd; /* Borde */
+  border-radius: 8px; /* Bordes redondeados */
+  overflow: hidden; /* Cortar contenido que sobresale */
+}

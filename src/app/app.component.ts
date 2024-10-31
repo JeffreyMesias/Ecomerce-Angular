@@ -1,70 +1,53 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Productos } from './models/productos.model';
-import { Router } from '@angular/router';
-import { Calsado } from './models/calsado.model';
-import { Electrodomesticos } from './models/electrodomesticos.model';
-import { muebles } from './models/muebles.model';
+import { HttpClient } from '@angular/common/http';
+import { Article } from './models/article.model';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css',
+  styleUrls: ['./app.component.css'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'KM-MOTOR';
   http = inject(HttpClient);
-  productos: Productos[] = [];
-  calsado: Calsado[] = [];
-  electrodomesticos: Electrodomesticos[] = [];
-  muebles: muebles[] = [];
-
-  ocultarProductos = true;
-  divOculto = false;
-  //1: sudaderas
-  //2: electrodomesticos
-  //3: muebles
-  //4: calsados
-  //5: otros
+  productos: Article[] = [];
+  ocultarProductos = true; // Controla la visibilidad de los productos
 
   ngOnInit() {
-    this.http.get<Productos[]>('https://api.escuelajs.co/api/v1/products')
+    this.loadProducts('productos');
+  }
+
+  loadProducts(category: string) {
+    let url = 'https://api.escuelajs.co/api/v1/products';
+    
+    switch (category) {
+      case 'calsado':
+        url = 'https://api.escuelajs.co/api/v1/categories/4/products';
+        break;
+      case 'electrodomesticos':
+        url = 'https://api.escuelajs.co/api/v1/categories/2/products';
+        break;
+      case 'muebles':
+        url = 'https://api.escuelajs.co/api/v1/categories/3/products';
+        break;
+      default:
+        break;
+    }
+
+    this.http.get<Article[]>(url)
       .subscribe((data) => {
         this.productos = data;
+        this.ocultarProductos = false; // Muestra los productos después de cargar
       });
-
-     
   }
-  toggleDiv(event: Event, alias: string){
-    console.log('ALIAS:',alias);
+
+  toggleDiv(event: Event, alias: string) {
     event.preventDefault();
-    if(this.ocultarProductos){
-      this.ocultarProductos = false;
-    }
-    if(alias === 'calsado'){
-      this.http.get<Calsado[]>('https://api.escuelajs.co/api/v1/categories/4/products')
-      .subscribe((data) => {
-        this.calsado = data;
-      });
-    } else if(alias === 'electrodomesticos'){
-      this.http.get<Electrodomesticos[]>('https://api.escuelajs.co/api/v1/categories/2/products')
-      .subscribe((data) => {
-        console.log('DATA',data);
-        this.electrodomesticos = data;
-      });
-    }
-    else if(alias === 'muebles'){
-      this.http.get<muebles[]>('https://api.escuelajs.co/api/v1/categories/3/products')
-      .subscribe((data) => {
-        this.muebles = data;
-      });
-    }
-    
+    this.loadProducts(alias);
   }
 
-  
   goToHome() {
-    this.ocultarProductos = true; // Muestra el div nuevamente
-    this.divOculto = false; // Restablece la variable de control
+    this.ocultarProductos = true; // Oculta los productos
+    this.productos = []; // Limpia la lista de productos
   }
 }

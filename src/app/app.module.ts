@@ -5,12 +5,8 @@ import {FormsModule} from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { ProductosComponent } from './components/productos/productos.component';
-import { ElectrodomesticosComponent } from './components/electrodomesticos/electrodomesticos.component';
-import { MueblesComponent } from './components/muebles/muebles.component';
-import { OtrosComponent } from './components/otros/otros.component';
-import { SudaderasComponent } from './components/sudaderas/sudaderas.component';
-import { CalsadoComponent } from './components/calsado/calsado.component';
+import { ArticleComponent } from './components/article/article.component';
+
 
 
 import {MatButtonModule} from '@angular/material/button';
@@ -22,12 +18,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [
     AppComponent,
-    ProductosComponent,
-    SudaderasComponent,
-    ElectrodomesticosComponent,
-    MueblesComponent,
-    OtrosComponent,
-    CalsadoComponent
+    ArticleComponent,
+   
 
   ],
   imports: [

@@ -1,0 +1,20 @@
+<ng-container *ngIf="articles">
+  <h1>Nombre: {{ articles.title }}</h1>
+  <p>Precio: {{ articles.price | currency }}</p>
+
+  <div class="image-grid">
+    <img *ngFor="let image of articles.images" id="article" [src]="image" alt="article">
+  </div>
+
+  <p>Descripción: 
+    <input type="text" [(ngModel)]="articles.descripcion" (ngModelChange)="guardarDescripcion()">
+  </p>
+  <p>{{ articles.descripcion }}</p>
+
+  <!-- Botón de filtro -->
+  <button (click)="aplicarFiltro()">Aplicar Filtro</button>
+</ng-container>
+
+<ng-container *ngIf="!articles">
+  No existen calzado
+</ng-container>
