@@ -1,0 +1,59 @@
+
+<div id="head">
+  <div class="contenedor">
+    <button class="menuP" mat-flat-button [matMenuTriggerFor]="menu" color="primary">Menu Principal</button>
+  </div>
+ 
+  <h1 id="tittle">KM MOTOR</h1>
+  
+  <div style="text-align:left">
+    
+    <mat-menu #menu="matMenu">
+      <a (click)="toggleDiv($event,'calsado')" routerLink="/calsado" aria-label="Youtube" target="_self" rel="noopener" title="Youtube">
+        <span>
+          <button mat-menu-item>Calsado</button>
+        </span>
+      </a>
+      <a (click)="toggleDiv($event,'electrodomesticos')" routerLink="/electrodomesticos" aria-label="Youtube" target="_self" rel="noopener" title="Youtube">
+        <span>
+          <button mat-menu-item>Electrodomesticos</button>
+        </span>
+      </a>
+      <a (click)="toggleDiv($event,'muebles')" routerLink="/muebles" aria-label="Youtube" target="_self" rel="noopener" title="Youtube">
+        <span>
+          <button mat-menu-item>Muebles</button>
+        </span>
+      </a>
+      <a (click)="toggleDiv($event,'sudaderas')" routerLink="/sudaderas" aria-label="Youtube" target="_self" rel="noopener" title="Youtube">
+        <span>
+          <button mat-menu-item>Sudaderas</button>
+        </span>
+      </a>
+      <a (click)="toggleDiv($event,'otros')" routerLink="/otros" aria-label="Youtube" target="_self" rel="noopener" title="Youtube">
+        <span>
+          <button mat-menu-item>Otros</button>
+        </span>
+      </a>
+    </mat-menu>
+  </div>
+  <div class="contenedor"> 
+  <button class="regresar" mat-flat-button (click)="goToHome()" routerLink="/">regresar</button>
+</div>
+</div>
+<div *ngIf="ocultarProductos">
+  <app-productos [productos]="productos" *ngFor="let productos of productos"></app-productos>
+</div>
+<div>
+  <app-calsado [calsado]="calsado" *ngFor="let calsado of calsado"></app-calsado>
+</div>
+<div>
+  <app-electrodomesticos [electrodomesticos]="electrodomesticos" *ngFor="let electrodomesticos of electrodomesticos"></app-electrodomesticos>
+</div>
+<div>
+  <app-muebles [muebles]="muebles" *ngFor="let muebles of muebles"></app-muebles>
+</div>
+<div style="text-align: center;">
+  <router-outlet></router-outlet>
+</div>
+
+

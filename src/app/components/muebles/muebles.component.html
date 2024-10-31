@@ -1,0 +1,18 @@
+<ng-container *ngIf="muebles">
+    <h1>Nombre: {{muebles.title}}</h1>
+    <p>Precio: {{muebles.price}}</p>
+  
+   
+    <div class="image-grid">
+      <img *ngFor="let image of muebles.images" id="muebles" [src]="image" alt="muebles">
+    </div>
+  
+    <p>Descripcion: 
+      
+      <input type="text" [(ngModel)]="muebles.descripcion" (ngModelChange)="guardarDescripcion()">
+    </p>
+    <p>{{muebles.descripcion}}</p>
+  </ng-container>
+  <ng-container *ngIf="!muebles">
+    No existen muebles
+  </ng-container>

@@ -1,0 +1,18 @@
+<ng-container *ngIf="calsado">
+  <h1>Nombre: {{calsado.title}}</h1>
+  <p>Precio: {{calsado.price}}</p>
+
+ 
+  <div class="image-grid">
+    <img *ngFor="let image of calsado.images" id="calsado" [src]="image" alt="calsado">
+  </div>
+
+  <p>Descripcion: 
+    
+    <input type="text" [(ngModel)]="calsado.descripcion" (ngModelChange)="guardarDescripcion()">
+  </p>
+  <p>{{calsado.descripcion}}</p>
+</ng-container>
+<ng-container *ngIf="!calsado">
+  No existen calsado
+</ng-container>
